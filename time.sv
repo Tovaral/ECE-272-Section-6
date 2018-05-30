@@ -11,21 +11,28 @@ module time_machine( input logic clk_s,
 					sec = 0;
 				else
 					if( sec >= 59)
-						sec = 0;
+						begin
+							sec = 0;
+							min = min +1;
+							if (min > 59)
+								begin
+									min = 0;
+								end
+						end
 					else
 						sec = sec + 1;
 		
 			end
-			always_ff @ (posedge clk_m, negedge reset_n)
-			begin
-				if(!reset_n)
-					min = 0;
-				else
-					if( min >= 59)
-						min = 0;
-					else
-						min = min + 1;
+		//	always_ff @ (posedge clk_m, negedge reset_n)
+		//	begin
+		//		if(!reset_n)
+		//			min = 0;
+		//		else
+		//			if( min >= 59)
+		//				min = 0;
+		//			else
+		//				min = min + 1;
 		
-			end
+	//		end
 			
 	endmodule	
